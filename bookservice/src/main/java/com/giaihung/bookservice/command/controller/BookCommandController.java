@@ -1,12 +1,11 @@
 package com.giaihung.bookservice.command.controller;
 
 import com.giaihung.bookservice.command.command.CreateBookCommand;
+import com.giaihung.bookservice.command.command.DeleteBookCommand;
+import com.giaihung.bookservice.command.command.UpdateBookCommand;
 import com.giaihung.bookservice.command.model.BookRequestModel;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -22,11 +21,28 @@ public class BookCommandController {
     @PostMapping
     public String addBook(@RequestBody BookRequestModel bookRequestModel) {
         CreateBookCommand createBookCommand = new CreateBookCommand(
-            UUID.randomUUID().toString(),
-            bookRequestModel.getName(),
-            bookRequestModel.getAuthor(),
-            true
+                UUID.randomUUID().toString(),
+                bookRequestModel.getName(),
+                bookRequestModel.getAuthor(),
+                true
         );
         return commandGateway.sendAndWait(createBookCommand);
+    }
+
+    @PutMapping("/{bookId}")
+    public String updateBook(@RequestBody BookRequestModel bookRequestModel, @PathVariable("bookId") String bookId) {
+        UpdateBookCommand command = new UpdateBookCommand(
+                bookId,
+                bookRequestModel.getName(),
+                bookRequestModel.getAuthor(),
+                bookRequestModel.isReady()
+        );
+        return commandGateway.sendAndWait(command);
+    }
+
+    @DeleteMapping("/{bookId}")
+    public String deleteBook(@PathVariable("bookId") String bookId) {
+        DeleteBookCommand command = new DeleteBookCommand(bookId);
+        return commandGateway.sendAndWait(command);
     }
 }
