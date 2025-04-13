@@ -38,13 +38,14 @@ public class BookProjection {
     }
 
     @QueryHandler
-    public BookResponseModel handleQuerySingleBook(GetSingleBookQuery query) {
+    public BookResponseModel handleQuerySingleBook(GetSingleBookQuery query) throws Exception {
         Optional<Book> book = bookRepository.findById(query.getBookId());
         if(book.isPresent()) {
             BookResponseModel bookResponseModel = new BookResponseModel();
             BeanUtils.copyProperties(book.get(), bookResponseModel);
             return bookResponseModel;
+        } else {
+            throw new Exception("Book not found with ID: " + query.getBookId());
         }
-        return null;
     }
 }
