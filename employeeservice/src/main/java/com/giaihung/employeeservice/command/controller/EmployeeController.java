@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +20,7 @@ public class EmployeeController {
   private final CommandGateway commandGateway;
 
   @PostMapping
-  public String createEmployee(@Valid @RequestBody CreateEmployeeModel payload) {
+  public ResponseEntity<String> createEmployee(@Valid @RequestBody CreateEmployeeModel payload) {
     CreateEmployeeCommand command =
         CreateEmployeeCommand.builder()
             .id(UUID.randomUUID().toString())
@@ -28,11 +30,11 @@ public class EmployeeController {
             .isDiscipline(false)
             .build();
 
-    return commandGateway.sendAndWait(command);
+    return ResponseEntity.status(HttpStatus.CREATED).body(commandGateway.sendAndWait(command));
   }
 
   @PutMapping("/{employeeId}")
-  public String updateEmployee(
+  public ResponseEntity<Void> updateEmployee(
       @Valid @RequestBody UpdateEmployeeModel model, @PathVariable String employeeId) {
     UpdateEmployeeCommand command =
         UpdateEmployeeCommand.builder()
@@ -42,12 +44,14 @@ public class EmployeeController {
             .kin(model.getKin())
             .isDiscipline(model.getIsDiscipline())
             .build();
-    return commandGateway.sendAndWait(command);
+    commandGateway.sendAndWait(command);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   @DeleteMapping("/{employeeId}")
-  public String deleteEmployee(@PathVariable("employeeId") String employeeId) {
+  public ResponseEntity<Void> deleteEmployee(@PathVariable("employeeId") String employeeId) {
     DeleteEmployeeCommand command = new DeleteEmployeeCommand(employeeId);
-    return commandGateway.sendAndWait(command);
+    commandGateway.sendAndWait(command);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 }
