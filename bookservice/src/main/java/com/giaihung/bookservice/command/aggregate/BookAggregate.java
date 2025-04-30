@@ -21,51 +21,50 @@ import org.springframework.beans.BeanUtils;
 @Getter
 @Setter
 public class BookAggregate {
-    @AggregateIdentifier
-    private String id;
-    private String name;
-    private String author;
-    private boolean isReady;
+  @AggregateIdentifier private String id;
+  private String name;
+  private String author;
+  private boolean isReady;
 
-    @CommandHandler
-    public BookAggregate(CreateBookCommand createBookCommand) {
-        BookCreatedEvent bookCreatedEvent = new BookCreatedEvent();
-        BeanUtils.copyProperties(createBookCommand, bookCreatedEvent);
-        AggregateLifecycle.apply(bookCreatedEvent);
-    }
+  @CommandHandler
+  public BookAggregate(CreateBookCommand createBookCommand) {
+    BookCreatedEvent bookCreatedEvent = new BookCreatedEvent();
+    BeanUtils.copyProperties(createBookCommand, bookCreatedEvent);
+    AggregateLifecycle.apply(bookCreatedEvent);
+  }
 
-    @CommandHandler
-    public void handleUpdateBook(UpdateBookCommand command) {
-        BookUpdatedEvent updateEvent = new BookUpdatedEvent();
-        BeanUtils.copyProperties(command, updateEvent);
-        AggregateLifecycle.apply(updateEvent);
-    }
+  @CommandHandler
+  public void handleUpdateBook(UpdateBookCommand command) {
+    BookUpdatedEvent updateEvent = new BookUpdatedEvent();
+    BeanUtils.copyProperties(command, updateEvent);
+    AggregateLifecycle.apply(updateEvent);
+  }
 
-    @CommandHandler
-    public void handleDeleteBook(DeleteBookCommand command) {
-        BookDeletedEvent deleteEvent = new BookDeletedEvent();
-        BeanUtils.copyProperties(command, deleteEvent);
-        AggregateLifecycle.apply(deleteEvent);
-    }
+  @CommandHandler
+  public void handleDeleteBook(DeleteBookCommand command) {
+    BookDeletedEvent deleteEvent = new BookDeletedEvent();
+    BeanUtils.copyProperties(command, deleteEvent);
+    AggregateLifecycle.apply(deleteEvent);
+  }
 
-    @EventSourcingHandler
-    public void on(BookCreatedEvent bookCreatedEvent) {
-        this.id = bookCreatedEvent.getId();
-        this.name = bookCreatedEvent.getName();
-        this.author = bookCreatedEvent.getAuthor();
-        this.isReady = bookCreatedEvent.isReady();
-    }
+  @EventSourcingHandler
+  public void on(BookCreatedEvent bookCreatedEvent) {
+    this.id = bookCreatedEvent.getId();
+    this.name = bookCreatedEvent.getName();
+    this.author = bookCreatedEvent.getAuthor();
+    this.isReady = bookCreatedEvent.isReady();
+  }
 
-    @EventSourcingHandler
-    public void on(BookUpdatedEvent bookUpdatedEvent) {
-        this.id = bookUpdatedEvent.getId();
-        this.name = bookUpdatedEvent.getName();
-        this.author = bookUpdatedEvent.getAuthor();
-        this.isReady = bookUpdatedEvent.isReady();
-    }
+  @EventSourcingHandler
+  public void on(BookUpdatedEvent bookUpdatedEvent) {
+    this.id = bookUpdatedEvent.getId();
+    this.name = bookUpdatedEvent.getName();
+    this.author = bookUpdatedEvent.getAuthor();
+    this.isReady = bookUpdatedEvent.isReady();
+  }
 
-    @EventSourcingHandler
-    public void on(BookDeletedEvent bookDeletedEvent) {
-        this.id = bookDeletedEvent.getId();
-    }
+  @EventSourcingHandler
+  public void on(BookDeletedEvent bookDeletedEvent) {
+    this.id = bookDeletedEvent.getId();
+  }
 }

@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetSingleBookQuery {
-    private String bookId;
+  private String bookId;
 }

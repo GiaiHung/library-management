@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ErrorMessageResponse {
-    private String code;
-    private HttpStatus status;
-    private String message;
+  private String code;
+  private HttpStatus status;
+  private String message;
 }

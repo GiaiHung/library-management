@@ -10,8 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookCreatedEvent {
-    private String id;
-    private String name;
-    private String author;
-    private boolean isReady;
+  private String id;
+  private String name;
+  private String author;
+  private boolean isReady;
 }

@@ -1,15 +1,13 @@
-package com.giaihung.bookservice.command.command;
+package com.giaihung.employeeservice.command.command;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteBookCommand {
+public class DeleteEmployeeCommand {
   @TargetAggregateIdentifier private String id;
 }

@@ -15,9 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
-    @Id
-    private String id;
-    private String name;
-    private String author;
-    private boolean isReady;
+  @Id private String id;
+  private String name;
+  private String author;
+  private boolean isReady;
 }
