@@ -2,4 +2,8 @@ package com.giaihung.employeeservice.command.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EmployeeRepository extends JpaRepository<Employee, String> {}
+import java.util.List;
+
+public interface EmployeeRepository extends JpaRepository<Employee, String> {
+    List<Employee> findAllByIsDiscipline(Boolean isDiscipline);
+}

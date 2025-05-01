@@ -37,7 +37,6 @@ public class EmployeeEventHandler {
   }
 
   @EventHandler
-  @DisallowReplay
   public void on(EmployeeDeletedEvent event) {
     try {
       employeeRepository
