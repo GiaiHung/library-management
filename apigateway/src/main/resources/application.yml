@@ -1,6 +1,10 @@
 spring:
   application:
     name: apigateway
+  data:
+    redis:
+      port: 6379
+      host: localhost
   cloud:
     gateway:
       discovery:
@@ -8,10 +12,19 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id  : employeeservice
-          uri : lb://employeeservice
+        - id: employeeservice
+          uri: lb://employeeservice
           predicates:
             - Path=/api/v1/employees/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # Every second, 10 token will be generated
+                redis-rate-limiter.replenishRate: 10
+                # Maximum 20 tokens in the bucket
+                redis-rate-limiter.burstCapacity: 20
+                # 1 request will take 1 token
+                redis-rate-limiter.requestedTokens: 1
 
 server:
   port: 8080
