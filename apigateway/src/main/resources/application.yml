@@ -25,6 +25,22 @@ spring:
                 redis-rate-limiter.burstCapacity: 20
                 # 1 request will take 1 token
                 redis-rate-limiter.requestedTokens: 1
+            - KeyAuthFilter
+        - id: bookservice
+          uri: lb://bookservice
+          predicates:
+            - Path=/api/v1/books/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # Every second, 10 token will be generated
+                redis-rate-limiter.replenishRate: 10
+                # Maximum 20 tokens in the bucket
+                redis-rate-limiter.burstCapacity: 20
+                # 1 request will take 1 token
+                redis-rate-limiter.requestedTokens: 1
+            - KeyAuthFilter
+
 
 server:
   port: 8080
@@ -37,3 +53,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
+
+auth-filter-api-key: giaihung
