@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class KafkaService {
-    private final KafkaTemplate<String, String> kafkaTemplate;
+  private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendMessage(String topic, String message) {
-        kafkaTemplate.send(topic, message);
-        log.info("Sent message to topic {}", topic);
-    }
+  public void sendMessage(String topic, String message) {
+    kafkaTemplate.send(topic, message);
+    log.info("Sent message to topic {}", topic);
+  }
 }
