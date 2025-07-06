@@ -4,6 +4,7 @@
       <w>apigateway</w>
       <w>bookservice</w>
       <w>discoveryserver</w>
+      <w>notificationservice</w>
     </words>
   </dictionary>
 </component>

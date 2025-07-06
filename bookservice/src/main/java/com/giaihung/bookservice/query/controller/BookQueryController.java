@@ -5,21 +5,19 @@ import com.giaihung.bookservice.query.queries.GetAllBooksQuery;
 import com.giaihung.bookservice.query.queries.GetSingleBookQuery;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+
+import com.giaihung.commonservice.service.KafkaService;
+import lombok.RequiredArgsConstructor;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/books")
+@RequiredArgsConstructor
 public class BookQueryController {
   private final QueryGateway queryGateway;
-
-  public BookQueryController(QueryGateway queryGateway) {
-    this.queryGateway = queryGateway;
-  }
+  private final KafkaService kafkaService;
 
   @GetMapping
   public List<BookResponseModel> getAllBooks() {
@@ -38,5 +36,10 @@ public class BookQueryController {
     CompletableFuture<BookResponseModel> result =
         queryGateway.query(query, ResponseTypes.instanceOf(BookResponseModel.class));
     return result.join();
+  }
+
+  @PostMapping("/sendMessage")
+  public void sendMessage(@RequestBody String message) {
+    kafkaService.sendMessage("test", message);
   }
 }
