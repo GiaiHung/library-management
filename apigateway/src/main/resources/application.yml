@@ -40,6 +40,20 @@ spring:
                 # 1 request will take 1 token
                 redis-rate-limiter.requestedTokens: 1
             - KeyAuthFilter
+        - id: borrowingservice
+          uri: lb://borrowingservice
+          predicates:
+            - Path=/api/v1/borrowings/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # Every second, 10 token will be generated
+                redis-rate-limiter.replenishRate: 10
+                # Maximum 20 tokens in the bucket
+                redis-rate-limiter.burstCapacity: 20
+                # 1 request will take 1 token
+                redis-rate-limiter.requestedTokens: 1
+            - KeyAuthFilter
 
 
 server:

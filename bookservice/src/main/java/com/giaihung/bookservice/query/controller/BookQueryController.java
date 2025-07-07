@@ -42,4 +42,9 @@ public class BookQueryController {
   public void sendMessage(@RequestBody String message) {
     kafkaService.sendMessage("test", message);
   }
+
+  @PostMapping("/sendEmail")
+  public void sendEmail(@RequestBody String email) {
+    kafkaService.sendMessage("send_email_with_template", email);
+  }
 }
