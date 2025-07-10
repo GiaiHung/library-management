@@ -1,19 +1,20 @@
 package com.giaihung.bookservice.command.command;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateBookCommand {
+public class UpdateBookStatusCommand {
     @TargetAggregateIdentifier
-    private String id;
-    private String name;
-    private String author;
-    private boolean isReady;
+    private String bookId;
+
+    private Boolean isReady;
+
+    private String employeeId;
+
+    private String borrowingId;
 }

@@ -1,7 +1,9 @@
 package com.giaihung.borrowingservice.command.aggregate;
 
 import com.giaihung.borrowingservice.command.command.CreateBorrowingCommand;
+import com.giaihung.borrowingservice.command.command.DeleteBorrowingCommand;
 import com.giaihung.borrowingservice.command.event.CreateBorrowingEvent;
+import com.giaihung.borrowingservice.command.event.DeleteBorrowingEvent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,11 +39,23 @@ public class BorrowingAggregate {
         AggregateLifecycle.apply(event);
     }
 
+    @CommandHandler
+    public void handle(DeleteBorrowingCommand command) {
+        DeleteBorrowingEvent event = new DeleteBorrowingEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
+    }
+
     @EventSourcingHandler
     public void on(CreateBorrowingEvent event) {
         this.id = event.getId();
         this.bookId = event.getBookId();
         this.employeeId = event.getEmployeeId();
         this.borrowingDate = event.getBorrowingDate();
+    }
+
+    @EventSourcingHandler
+    public void on(DeleteBorrowingEvent event) {
+        this.id = event.getId();
     }
 }

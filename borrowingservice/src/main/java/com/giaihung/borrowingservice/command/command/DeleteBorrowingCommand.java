@@ -1,19 +1,14 @@
-package com.giaihung.bookservice.command.command;
+package com.giaihung.borrowingservice.command.command;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateBookCommand {
+public class DeleteBorrowingCommand {
     @TargetAggregateIdentifier
     private String id;
-    private String name;
-    private String author;
-    private boolean isReady;
 }

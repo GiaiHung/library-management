@@ -40,4 +40,22 @@ public class BookEventHandler {
     Optional<Book> currentBookOptional = bookRepository.findById(event.getId());
     currentBookOptional.ifPresent(book -> bookRepository.deleteById(book.getId()));
   }
+
+  @EventHandler
+  public void onUpdateStatus(BookStatusUpdatedEvent event) {
+    Optional<Book> bookOptional = bookRepository.findById(event.getBookId());
+    bookOptional.ifPresent(book -> {
+      book.setReady(event.getIsReady());
+      bookRepository.save(book);
+    });
+  }
+
+  @EventHandler
+  public void onRollbackStatus(BookStatusRollbackEvent event) {
+    Optional<Book> bookOptional = bookRepository.findById(event.getBookId());
+    bookOptional.ifPresent(book -> {
+      book.setReady(event.getIsReady());
+      bookRepository.save(book);
+    });
+  }
 }
