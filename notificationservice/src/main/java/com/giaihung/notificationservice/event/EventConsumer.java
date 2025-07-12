@@ -4,6 +4,7 @@ import com.giaihung.commonservice.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
@@ -61,8 +62,9 @@ public class EventConsumer {
         Map<String, Object> placeholder = new HashMap<>();
         placeholder.put("name", "Giai Hung");
         // Use path relative to src/main/resources
-        ClassPathResource resource = new ClassPathResource("/images/nature.jpg");
-        File file = resource.getFile();
-        emailService.sendEmailWithTemplate(message, "Celebrate Women's Equality Day!", "emailTemplate.ftl", placeholder, file);
+        // ClassPathResource resource = new ClassPathResource("/images/nature.jpg");
+        // File file = resource.getFile();
+        Resource resource = new ClassPathResource("images/nature.jpg");
+        emailService.sendEmailWithTemplate(message, "Celebrate Women's Equality Day!", "emailTemplate.ftl", placeholder, resource);
     }
 }

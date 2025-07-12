@@ -25,7 +25,7 @@ public class KeyAuthFilter extends
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             if(!exchange.getRequest().getHeaders().containsKey("api-key")) {
-                throw new RuntimeException("Missing authorization information");
+                return handleException(exchange, "Missing authorization information", HttpStatus.UNAUTHORIZED);
             }
 
             String key = exchange.getRequest().getHeaders().get("api-key").get(0);
