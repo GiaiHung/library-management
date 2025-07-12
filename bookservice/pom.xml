@@ -11,6 +11,7 @@
 	<groupId>com.giaihung</groupId>
 	<artifactId>bookservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>bookservice</name>
 	<description>Book Service with Eureka Discovery Client</description>
 	<url/>

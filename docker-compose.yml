@@ -134,6 +134,22 @@ services:
     environment:
       - "AXONIQ_AXONSERVER_SERVERS=axonserver:8024"
 
+  borrowingservice:
+    build:
+      context: .
+      dockerfile: borrowingservice/Dockerfile
+    ports:
+      - "9003:9003"
+    networks:
+      - library-management-networks
+    depends_on:
+      - discoveryserver
+      - axonserver
+      - employeeservice
+      - bookservice
+    environment:
+      - "AXONIQ_AXONSERVER_SERVERS=axonserver:8024"
+
   notificationservice:
     build:
       context: .

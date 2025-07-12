@@ -8,20 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="apigateway" />
+        <module name="commonservice" />
+        <module name="borrowingservice" />
         <module name="employeeservice" />
         <module name="discoveryserver" />
         <module name="bookservice" />
         <module name="notificationservice" />
-      </profile>
-      <profile name="Annotation profile for borrowingservice" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-        </processorPath>
-        <module name="borrowingservice" />
-        <module name="commonservice" />
       </profile>
     </annotationProcessing>
   </component>
