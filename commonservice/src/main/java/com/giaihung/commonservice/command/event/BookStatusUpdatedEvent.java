@@ -1,15 +1,13 @@
-package com.giaihung.bookservice.command.command;
+package com.giaihung.commonservice.command.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RollbackBookStatusCommand {
-    @TargetAggregateIdentifier
+public class BookStatusUpdatedEvent {
     private String bookId;
 
     private Boolean isReady;

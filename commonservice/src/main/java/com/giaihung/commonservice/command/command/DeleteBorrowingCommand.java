@@ -1,4 +1,4 @@
-package com.giaihung.bookservice.command.command;
+package com.giaihung.commonservice.command.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +8,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateBookStatusCommand {
+public class DeleteBorrowingCommand {
     @TargetAggregateIdentifier
-    private String bookId;
-
-    private Boolean isReady;
-
-    private String employeeId;
-
-    private String borrowingId;
+    private String id;
 }

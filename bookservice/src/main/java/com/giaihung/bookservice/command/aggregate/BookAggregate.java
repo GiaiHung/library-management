@@ -2,6 +2,10 @@ package com.giaihung.bookservice.command.aggregate;
 
 import com.giaihung.bookservice.command.command.*;
 import com.giaihung.bookservice.command.event.*;
+import com.giaihung.commonservice.command.command.RollbackBookStatusCommand;
+import com.giaihung.commonservice.command.command.UpdateBookStatusCommand;
+import com.giaihung.commonservice.command.event.BookStatusRollbackEvent;
+import com.giaihung.commonservice.command.event.BookStatusUpdatedEvent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

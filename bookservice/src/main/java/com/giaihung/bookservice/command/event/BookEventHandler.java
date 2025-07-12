@@ -3,6 +3,9 @@ package com.giaihung.bookservice.command.event;
 import com.giaihung.bookservice.command.data.Book;
 import com.giaihung.bookservice.command.data.repositories.BookRepository;
 import java.util.Optional;
+
+import com.giaihung.commonservice.command.event.BookStatusRollbackEvent;
+import com.giaihung.commonservice.command.event.BookStatusUpdatedEvent;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;

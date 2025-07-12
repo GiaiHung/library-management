@@ -1,4 +1,4 @@
-package com.giaihung.bookservice.query.queries;
+package com.giaihung.commonservice.query.queries;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

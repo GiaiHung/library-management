@@ -1,4 +1,4 @@
-package com.giaihung.borrowingservice.command.command;
+package com.giaihung.commonservice.command.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,13 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteBorrowingCommand {
+public class RollbackBookStatusCommand {
     @TargetAggregateIdentifier
-    private String id;
+    private String bookId;
+
+    private Boolean isReady;
+
+    private String employeeId;
+
+    private String borrowingId;
 }

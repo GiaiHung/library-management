@@ -1,4 +1,4 @@
-package com.giaihung.employeeservice.query.model;
+package com.giaihung.commonservice.query.model;
 
 import lombok.Data;
 

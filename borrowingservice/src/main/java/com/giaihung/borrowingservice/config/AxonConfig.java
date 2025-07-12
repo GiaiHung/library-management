@@ -1,5 +1,9 @@
 package com.giaihung.borrowingservice.config;
 
+import com.giaihung.borrowingservice.command.event.CreateBorrowingEvent;
+import com.giaihung.borrowingservice.command.event.DeleteBorrowingEvent;
+import com.giaihung.commonservice.command.event.BookStatusUpdatedEvent;
+import com.giaihung.commonservice.model.BookResponseModel;
 import com.thoughtworks.xstream.XStream;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.xml.XStreamSerializer;
@@ -13,11 +17,10 @@ public class AxonConfig {
     public Serializer eventSerializer() {
         XStream xStream = new XStream();
         xStream.allowTypes(new Class[]{
-                com.giaihung.bookservice.command.event.BookCreatedEvent.class,
-                com.giaihung.borrowingservice.command.event.CreateBorrowingEvent.class,
-                com.giaihung.borrowingservice.command.event.DeleteBorrowingEvent.class,
-                com.giaihung.bookservice.command.event.BookStatusUpdatedEvent.class,
-                com.giaihung.bookservice.query.model.BookResponseModel.class // Add BookResponseModel
+                CreateBorrowingEvent.class,
+                DeleteBorrowingEvent.class,
+                BookStatusUpdatedEvent.class,
+                BookResponseModel.class // Add BookResponseModel
         });
         // Optionally, allow all classes in your package (use cautiously)
         xStream.allowTypesByWildcard(new String[]{"com.giaihung.**"});
@@ -29,11 +32,10 @@ public class AxonConfig {
         // Configure message serializer for queries and commands
         XStream xStream = new XStream();
         xStream.allowTypes(new Class[]{
-                com.giaihung.bookservice.command.event.BookCreatedEvent.class,
-                com.giaihung.borrowingservice.command.event.CreateBorrowingEvent.class,
-                com.giaihung.borrowingservice.command.event.DeleteBorrowingEvent.class,
-                com.giaihung.bookservice.command.event.BookStatusUpdatedEvent.class,
-                com.giaihung.bookservice.query.model.BookResponseModel.class // Add BookResponseModel
+                CreateBorrowingEvent.class,
+                DeleteBorrowingEvent.class,
+                BookStatusUpdatedEvent.class,
+                BookResponseModel.class // Add BookResponseModel
         });
         xStream.allowTypesByWildcard(new String[]{"com.giaihung.**"});
         return XStreamSerializer.builder().xStream(xStream).build();

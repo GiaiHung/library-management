@@ -1,16 +1,16 @@
 package com.giaihung.borrowingservice.command.saga;
 
-import com.giaihung.bookservice.command.command.RollbackBookStatusCommand;
-import com.giaihung.bookservice.command.command.UpdateBookStatusCommand;
-import com.giaihung.bookservice.command.event.BookStatusRollbackEvent;
-import com.giaihung.bookservice.command.event.BookStatusUpdatedEvent;
-import com.giaihung.bookservice.query.model.BookResponseModel;
-import com.giaihung.bookservice.query.queries.GetSingleBookQuery;
-import com.giaihung.borrowingservice.command.command.DeleteBorrowingCommand;
+import com.giaihung.commonservice.command.command.RollbackBookStatusCommand;
+import com.giaihung.commonservice.command.command.UpdateBookStatusCommand;
+import com.giaihung.commonservice.command.event.BookStatusRollbackEvent;
+import com.giaihung.commonservice.command.event.BookStatusUpdatedEvent;
+import com.giaihung.commonservice.model.BookResponseModel;
+import com.giaihung.commonservice.query.queries.GetSingleBookQuery;
+import com.giaihung.commonservice.command.command.DeleteBorrowingCommand;
 import com.giaihung.borrowingservice.command.event.CreateBorrowingEvent;
 import com.giaihung.borrowingservice.command.event.DeleteBorrowingEvent;
-import com.giaihung.employeeservice.query.model.EmployeeDTO;
-import com.giaihung.employeeservice.query.queries.GetDetailEmployeeQuery;
+import com.giaihung.commonservice.query.model.EmployeeDTO;
+import com.giaihung.commonservice.query.queries.GetDetailEmployeeQuery;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

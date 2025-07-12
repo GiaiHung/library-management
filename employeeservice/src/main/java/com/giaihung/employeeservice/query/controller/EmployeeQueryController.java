@@ -1,9 +1,9 @@
 package com.giaihung.employeeservice.query.controller;
 
-import com.giaihung.employeeservice.query.model.EmployeeDTO;
+import com.giaihung.commonservice.query.model.EmployeeDTO;
 import com.giaihung.employeeservice.query.model.EmployeeSearchCriteria;
 import com.giaihung.employeeservice.query.queries.GetAllEmployeesQuery;
-import com.giaihung.employeeservice.query.queries.GetDetailEmployeeQuery;
+import com.giaihung.commonservice.query.queries.GetDetailEmployeeQuery;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,6 @@ import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

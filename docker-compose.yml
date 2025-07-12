@@ -145,8 +145,6 @@ services:
     depends_on:
       - discoveryserver
       - axonserver
-      - employeeservice
-      - bookservice
     environment:
       - "AXONIQ_AXONSERVER_SERVERS=axonserver:8024"
 

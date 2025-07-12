@@ -2,13 +2,11 @@ package com.giaihung.employeeservice.query.projection;
 
 import com.giaihung.employeeservice.command.data.Employee;
 import com.giaihung.employeeservice.command.data.EmployeeRepository;
-import com.giaihung.employeeservice.command.event.EmployeeDeletedEvent;
-import com.giaihung.employeeservice.query.model.EmployeeDTO;
+import com.giaihung.commonservice.query.model.EmployeeDTO;
 import com.giaihung.employeeservice.query.queries.GetAllEmployeesQuery;
-import com.giaihung.employeeservice.query.queries.GetDetailEmployeeQuery;
+import com.giaihung.commonservice.query.queries.GetDetailEmployeeQuery;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.giaihung.bookservice.command.event;
+package com.giaihung.commonservice.command.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

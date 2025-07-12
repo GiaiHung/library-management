@@ -1,7 +1,7 @@
 package com.giaihung.borrowingservice.command.aggregate;
 
 import com.giaihung.borrowingservice.command.command.CreateBorrowingCommand;
-import com.giaihung.borrowingservice.command.command.DeleteBorrowingCommand;
+import com.giaihung.commonservice.command.command.DeleteBorrowingCommand;
 import com.giaihung.borrowingservice.command.event.CreateBorrowingEvent;
 import com.giaihung.borrowingservice.command.event.DeleteBorrowingEvent;
 import lombok.Getter;
