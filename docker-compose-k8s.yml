@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  discoveryserver:
+    build:
+      context: .
+      dockerfile: discoveryserver/Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - library-management-networks
+
+  redis:
+    image: "redis:latest"
+    hostname: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - library-management-networks
+
+  apigateway:
+    build:
+      context: .
+      dockerfile: apigateway/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - library-management-networks
+    depends_on:
+      - discoveryserver
+      - redis
+
+networks:
+  library-management-networks:
+    driver: bridge
