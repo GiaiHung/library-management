@@ -1,9 +1,10 @@
 package com.giaihung.borrowingservice.command.aggregate;
 
 import com.giaihung.borrowingservice.command.command.CreateBorrowingCommand;
-import com.giaihung.commonservice.command.command.DeleteBorrowingCommand;
 import com.giaihung.borrowingservice.command.event.CreateBorrowingEvent;
 import com.giaihung.borrowingservice.command.event.DeleteBorrowingEvent;
+import com.giaihung.commonservice.command.command.DeleteBorrowingCommand;
+import java.util.Date;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,48 +15,45 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.BeanUtils;
 
-import java.util.Date;
-
 @Aggregate
 @NoArgsConstructor
 @Getter
 @Setter
 public class BorrowingAggregate {
-    @AggregateIdentifier
-    private String id;
+  @AggregateIdentifier private String id;
 
-    private String bookId;
+  private String bookId;
 
-    private String employeeId;
+  private String employeeId;
 
-    private Date borrowingDate;
+  private Date borrowingDate;
 
-    private Date returnDate;
+  private Date returnDate;
 
-    @CommandHandler
-    public BorrowingAggregate(CreateBorrowingCommand command) {
-        CreateBorrowingEvent event = new CreateBorrowingEvent();
-        BeanUtils.copyProperties(command, event);
-        AggregateLifecycle.apply(event);
-    }
+  @CommandHandler
+  public BorrowingAggregate(CreateBorrowingCommand command) {
+    CreateBorrowingEvent event = new CreateBorrowingEvent();
+    BeanUtils.copyProperties(command, event);
+    AggregateLifecycle.apply(event);
+  }
 
-    @CommandHandler
-    public void handle(DeleteBorrowingCommand command) {
-        DeleteBorrowingEvent event = new DeleteBorrowingEvent();
-        BeanUtils.copyProperties(command, event);
-        AggregateLifecycle.apply(event);
-    }
+  @CommandHandler
+  public void handle(DeleteBorrowingCommand command) {
+    DeleteBorrowingEvent event = new DeleteBorrowingEvent();
+    BeanUtils.copyProperties(command, event);
+    AggregateLifecycle.apply(event);
+  }
 
-    @EventSourcingHandler
-    public void on(CreateBorrowingEvent event) {
-        this.id = event.getId();
-        this.bookId = event.getBookId();
-        this.employeeId = event.getEmployeeId();
-        this.borrowingDate = event.getBorrowingDate();
-    }
+  @EventSourcingHandler
+  public void on(CreateBorrowingEvent event) {
+    this.id = event.getId();
+    this.bookId = event.getBookId();
+    this.employeeId = event.getEmployeeId();
+    this.borrowingDate = event.getBorrowingDate();
+  }
 
-    @EventSourcingHandler
-    public void on(DeleteBorrowingEvent event) {
-        this.id = event.getId();
-    }
+  @EventSourcingHandler
+  public void on(DeleteBorrowingEvent event) {
+    this.id = event.getId();
+  }
 }

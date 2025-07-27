@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeSearchCriteria {
-    private Boolean isDiscipline;
+  private Boolean isDiscipline;
 }

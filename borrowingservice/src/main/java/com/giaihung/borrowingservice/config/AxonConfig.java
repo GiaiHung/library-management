@@ -13,31 +13,33 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AxonConfig {
 
-    @Bean
-    public Serializer eventSerializer() {
-        XStream xStream = new XStream();
-        xStream.allowTypes(new Class[]{
-                CreateBorrowingEvent.class,
-                DeleteBorrowingEvent.class,
-                BookStatusUpdatedEvent.class,
-                BookResponseModel.class // Add BookResponseModel
+  @Bean
+  public Serializer eventSerializer() {
+    XStream xStream = new XStream();
+    xStream.allowTypes(
+        new Class[] {
+          CreateBorrowingEvent.class,
+          DeleteBorrowingEvent.class,
+          BookStatusUpdatedEvent.class,
+          BookResponseModel.class // Add BookResponseModel
         });
-        // Optionally, allow all classes in your package (use cautiously)
-        xStream.allowTypesByWildcard(new String[]{"com.giaihung.**"});
-        return XStreamSerializer.builder().xStream(xStream).build();
-    }
+    // Optionally, allow all classes in your package (use cautiously)
+    xStream.allowTypesByWildcard(new String[] {"com.giaihung.**"});
+    return XStreamSerializer.builder().xStream(xStream).build();
+  }
 
-    @Bean
-    public Serializer messageSerializer() {
-        // Configure message serializer for queries and commands
-        XStream xStream = new XStream();
-        xStream.allowTypes(new Class[]{
-                CreateBorrowingEvent.class,
-                DeleteBorrowingEvent.class,
-                BookStatusUpdatedEvent.class,
-                BookResponseModel.class // Add BookResponseModel
+  @Bean
+  public Serializer messageSerializer() {
+    // Configure message serializer for queries and commands
+    XStream xStream = new XStream();
+    xStream.allowTypes(
+        new Class[] {
+          CreateBorrowingEvent.class,
+          DeleteBorrowingEvent.class,
+          BookStatusUpdatedEvent.class,
+          BookResponseModel.class // Add BookResponseModel
         });
-        xStream.allowTypesByWildcard(new String[]{"com.giaihung.**"});
-        return XStreamSerializer.builder().xStream(xStream).build();
-    }
+    xStream.allowTypesByWildcard(new String[] {"com.giaihung.**"});
+    return XStreamSerializer.builder().xStream(xStream).build();
+  }
 }

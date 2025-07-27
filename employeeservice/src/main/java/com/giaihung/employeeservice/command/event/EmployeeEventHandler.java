@@ -4,7 +4,6 @@ import com.giaihung.employeeservice.command.data.Employee;
 import com.giaihung.employeeservice.command.data.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.eventhandling.DisallowReplay;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;

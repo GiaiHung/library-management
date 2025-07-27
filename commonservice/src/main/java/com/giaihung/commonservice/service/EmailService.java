@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.Map;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -54,7 +53,12 @@ public class EmailService {
    * @param placeholder A map of placeholders and their replacements
    * @param attachment Attachment file. Can be null
    */
-  public void sendEmailWithTemplate(String to, String subject, String templateName, Map<String, Object> placeholder, Resource attachment) {
+  public void sendEmailWithTemplate(
+      String to,
+      String subject,
+      String templateName,
+      Map<String, Object> placeholder,
+      Resource attachment) {
     try {
       Template template = freemarkerConfiguration.getTemplate(templateName);
       String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, placeholder);
@@ -64,12 +68,16 @@ public class EmailService {
       mimeMessageHelper.setSubject(subject);
       mimeMessageHelper.setText(html, true);
       if (attachment != null) {
-        mimeMessageHelper.addAttachment(attachment.getFilename() == null ? "images_" + Instant.now().getEpochSecond() : attachment.getFilename(), attachment);
+        mimeMessageHelper.addAttachment(
+            attachment.getFilename() == null
+                ? "images_" + Instant.now().getEpochSecond()
+                : attachment.getFilename(),
+            attachment);
       }
       javaMailSender.send(mimeMessage);
       log.info("Email with template sent successfully to {}", to);
     } catch (IOException | TemplateException | MessagingException e) {
-        throw new RuntimeException(e);
+      throw new RuntimeException(e);
     }
   }
 }

@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookStatusRollbackEvent {
-    private String bookId;
+  private String bookId;
 
-    private Boolean isReady;
+  private Boolean isReady;
 
-    private String employeeId;
+  private String employeeId;
 
-    private String borrowingId;
+  private String borrowingId;
 }

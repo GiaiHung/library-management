@@ -2,8 +2,8 @@ package com.giaihung.bookservice.query.projection;
 
 import com.giaihung.bookservice.command.data.Book;
 import com.giaihung.bookservice.command.data.repositories.BookRepository;
-import com.giaihung.commonservice.model.BookResponseModel;
 import com.giaihung.bookservice.query.queries.GetAllBooksQuery;
+import com.giaihung.commonservice.model.BookResponseModel;
 import com.giaihung.commonservice.query.queries.GetSingleBookQuery;
 import java.util.List;
 import java.util.Optional;

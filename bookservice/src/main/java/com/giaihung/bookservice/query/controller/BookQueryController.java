@@ -1,12 +1,11 @@
 package com.giaihung.bookservice.query.controller;
 
-import com.giaihung.commonservice.model.BookResponseModel;
 import com.giaihung.bookservice.query.queries.GetAllBooksQuery;
+import com.giaihung.commonservice.model.BookResponseModel;
 import com.giaihung.commonservice.query.queries.GetSingleBookQuery;
+import com.giaihung.commonservice.service.KafkaService;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-
-import com.giaihung.commonservice.service.KafkaService;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;

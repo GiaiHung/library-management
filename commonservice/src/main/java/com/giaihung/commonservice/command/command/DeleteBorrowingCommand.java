@@ -9,6 +9,5 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeleteBorrowingCommand {
-    @TargetAggregateIdentifier
-    private String id;
+  @TargetAggregateIdentifier private String id;
 }

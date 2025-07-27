@@ -10,8 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"com.giaihung.commonservice", "com.giaihung.borrowingservice"})
 public class BorrowingserviceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BorrowingserviceApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(BorrowingserviceApplication.class, args);
+  }
 }

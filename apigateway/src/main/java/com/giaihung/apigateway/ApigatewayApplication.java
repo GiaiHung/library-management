@@ -11,14 +11,14 @@ import reactor.core.publisher.Mono;
 @EnableDiscoveryClient
 public class ApigatewayApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApigatewayApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(ApigatewayApplication.class, args);
+  }
 
-	@Bean
-	public KeyResolver keyResolver() {
-		// Differentiate each user by using user address
-		return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
-	}
-
+  @Bean
+  public KeyResolver keyResolver() {
+    // Differentiate each user by using user address
+    return exchange ->
+        Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
+  }
 }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateBorrowingPayload {
-    private String bookId;
+  private String bookId;
 
-    private String employeeId;
+  private String employeeId;
 }

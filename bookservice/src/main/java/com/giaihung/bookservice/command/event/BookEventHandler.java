@@ -2,10 +2,9 @@ package com.giaihung.bookservice.command.event;
 
 import com.giaihung.bookservice.command.data.Book;
 import com.giaihung.bookservice.command.data.repositories.BookRepository;
-import java.util.Optional;
-
 import com.giaihung.commonservice.command.event.BookStatusRollbackEvent;
 import com.giaihung.commonservice.command.event.BookStatusUpdatedEvent;
+import java.util.Optional;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -47,18 +46,20 @@ public class BookEventHandler {
   @EventHandler
   public void onUpdateStatus(BookStatusUpdatedEvent event) {
     Optional<Book> bookOptional = bookRepository.findById(event.getBookId());
-    bookOptional.ifPresent(book -> {
-      book.setReady(event.getIsReady());
-      bookRepository.save(book);
-    });
+    bookOptional.ifPresent(
+        book -> {
+          book.setReady(event.getIsReady());
+          bookRepository.save(book);
+        });
   }
 
   @EventHandler
   public void onRollbackStatus(BookStatusRollbackEvent event) {
     Optional<Book> bookOptional = bookRepository.findById(event.getBookId());
-    bookOptional.ifPresent(book -> {
-      book.setReady(event.getIsReady());
-      bookRepository.save(book);
-    });
+    bookOptional.ifPresent(
+        book -> {
+          book.setReady(event.getIsReady());
+          bookRepository.save(book);
+        });
   }
 }
